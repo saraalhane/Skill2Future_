@@ -1,0 +1,164 @@
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: #1a2530;
+    /* Dark blue/slate background */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    font-family: 'Inter', system-ui, sans-serif;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.sidebar-header {
+    padding: 1.5rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sidebar-header .brand-logo-icon {
+    background-color: #0d6efd;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1rem;
+}
+
+.sidebar-header .brand-text {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+    flex: 1;
+    padding: 1.5rem 0;
+}
+
+.menu-group {
+    margin-bottom: 1.5rem;
+}
+
+.menu-group-title {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #8a98a5;
+    font-weight: 700;
+    padding: 0 1.5rem;
+    margin-bottom: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1.5rem;
+    color: #aeb9c4;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.menu-item i {
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.menu-item.active {
+    background-color: rgba(13, 110, 253, 0.15);
+    /* Slightly blue background */
+    color: #fff;
+    border-left-color: #0d6efd;
+    /* Blue indicator marker */
+}
+
+.menu-item.active i {
+    color: #0d6efd;
+}
+
+.sidebar-footer {
+    padding: 1.2rem 1.5rem;
+    background-color: #141d26;
+    /* Slightly darker bottom */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-profile-summary {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex: 1;
+    overflow: hidden;
+}
+
+.user-avatar-mini {
+    width: 36px;
+    height: 36px;
+    background-color: #0d6efd;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.user-details-mini {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.user-fullname {
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #fff;
+}
+
+.user-role {
+    font-size: 0.75rem;
+    color: #8a98a5;
+    white-space: nowrap;
+}
+
+.logout-btn {
+    background: transparent;
+    border: none;
+    color: #8a98a5;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0.5rem;
+    transition: color 0.2s;
+}
+
+.logout-btn:hover {
+    color: #dc3545;
+    /* Red color on hover for logout */
+}

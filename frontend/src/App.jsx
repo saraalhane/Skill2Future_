@@ -1,8 +1,10 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import Login from './components/Login';
-import Register from './components/Register';
-import './components/Auth.css';
+import Login from "./Users/Login.jsx";
+import Register from "./Users/Register.jsx";
+import Profile from "./Users/Profile.jsx";
+import Layout from "./components/Layout.jsx";
+import './Users/Auth.css';
 
 // Protected Route Component
 function ProtectedRoute({ children }) {
@@ -16,14 +18,14 @@ function ProtectedRoute({ children }) {
 }
 
 // Public Route (redirect if already logged in)
-function PublicRoute({ children }) {
+function PublicRoute({ children, redirectPath = "/dashboard" }) {
   const { user, loading } = useAuth();
 
   if (loading) {
     return <div>Chargement...</div>;
   }
 
-  return user ? <Navigate to="/dashboard" /> : children;
+  return user ? <Navigate to={redirectPath} /> : children;
 }
 
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -34,12 +36,15 @@ function App() {
       <AuthProvider>
         <Routes>
           {/* Public Routes */}
-          <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-          <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-          
-          {/* Protected Routes */}
-          <Route path="/dashboard" element={<ProtectedRoute><div>Dashboard - Bienvenue!</div></ProtectedRoute>} />
-          
+          <Route path="/login" element={<PublicRoute redirectPath="/dashboard"><Login /></PublicRoute>} />
+          <Route path="/register" element={<PublicRoute redirectPath="/profile"><Register /></PublicRoute>} />
+
+          {/* Protected Routes directly under Layout */}
+          <Route element={<ProtectedRoute><Layout /></ProtectedRoute>}>
+            <Route path="/dashboard" element={<div>Dashboard - Bienvenue!</div>} />
+            <Route path="/profile" element={<Profile />} />
+          </Route>
+
           {/* Default redirect */}
           <Route path="/" element={<Navigate to="/login" />} />
         </Routes>

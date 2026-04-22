@@ -113,10 +113,13 @@ export function AuthProvider({ children }) {
         };
       }
 
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      setUser(null);
-      navigate('/login');
+      if (data.token) {
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+      }
+
+      setUser(data.user);
+      navigate('/profile');
       return { success: true, user: data.user };
 
     } catch (error) {
