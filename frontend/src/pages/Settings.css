@@ -1,0 +1,180 @@
+.settings-page {
+    padding: 30px;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.settings-header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #1a1e29;
+}
+
+.settings-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.settings-card.danger-zone {
+    border: 1px solid #dc3545;
+    background-color: #fffafb;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1e29;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.danger-zone .card-title {
+    color: #dc3545;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.setting-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.setting-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.setting-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+/* Toggle Switch Styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 24px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #0d6efd;
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Select */
+.settings-select {
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    min-width: 150px;
+}
+
+/* Buttons */
+.btn-action {
+    padding: 8px 16px;
+    border: 1px solid #dee2e6;
+    background-color: #f8f9fa;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #333;
+    transition: 0.2s;
+}
+
+.btn-action:hover {
+    background-color: #e9ecef;
+}
+
+.btn-danger {
+    padding: 8px 16px;
+    border: none;
+    background-color: #dc3545;
+    color: white;
+    border-radius: 6px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.2s;
+}
+
+.btn-danger:hover {
+    background-color: #bb2d3b;
+}
+
+.notification-badge {
+    position: relative;
+}
+
+.notification-badge .badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background-color: #dc3545;
+    color: white;
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-weight: bold;
+}

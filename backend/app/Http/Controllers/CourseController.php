@@ -22,9 +22,13 @@ class CourseController extends Controller
             return [
                 'id' => $course->id,
                 'title' => $course->title,
+                'category' => $course->category,
+                'level' => $course->level,
+                'duration' => $course->duration,
                 'lessons_count' => $course->lessons_count,
                 'exercises_count' => $course->exercises_count,
                 'icon' => $course->icon,
+                'thumbnail_url' => $course->thumbnail_url,
                 'color_bg' => $course->color_bg,
                 'status' => $userCourse ? $userCourse->status : 'non_commence',
                 'progress' => $userCourse ? $userCourse->progress : 0,

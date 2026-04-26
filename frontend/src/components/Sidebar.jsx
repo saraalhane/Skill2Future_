@@ -51,6 +51,9 @@ export default function Sidebar() {
                     <NavLink to="/results" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
                         <i className="fas fa-chart-bar"></i> Résultats
                     </NavLink>
+                    <NavLink to="/notifications" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
+                        <i className="fas fa-bell"></i> Notifications
+                    </NavLink>
                 </div>
 
                 <div className="menu-group">
@@ -60,6 +63,9 @@ export default function Sidebar() {
                     </NavLink>
                     <NavLink to="/certifications" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
                         <i className="fas fa-certificate"></i> Certifications
+                    </NavLink>
+                    <NavLink to="/leaderboard" className={({ isActive }) => `menu-item ${isActive ? 'active' : ''}`}>
+                        <i className="fas fa-trophy"></i> Classement
                     </NavLink>
                 </div>
 
@@ -72,6 +78,15 @@ export default function Sidebar() {
                         <i className="fas fa-cog"></i> Paramètres
                     </NavLink>
                 </div>
+
+                {user?.role === 'admin' && (
+                    <div className="menu-group">
+                        <h3 className="menu-group-title">ADMINISTRATION</h3>
+                        <NavLink to="/admin-dashboard" className={({ isActive }) => `menu-item admin-link ${isActive ? 'active' : ''}`}>
+                            <i className="fas fa-shield-alt"></i> Admin Panel
+                        </NavLink>
+                    </div>
+                )}
             </div>
 
             <div className="sidebar-footer">

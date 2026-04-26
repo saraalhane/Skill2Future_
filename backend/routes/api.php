@@ -44,6 +44,13 @@ Route::prefix('auth')->group(function () {
         // Course Player
         Route::get('/courses/{id}/player', [\App\Http\Controllers\CoursePlayerController::class, 'show']);
         Route::post('/courses/{id}/complete-lesson', [\App\Http\Controllers\CoursePlayerController::class, 'completeLesson']);
+        
+        // Course Comments
+        Route::get('/comments', [\App\Http\Controllers\CommentController::class, 'index']);
+        Route::post('/comments', [\App\Http\Controllers\CommentController::class, 'store']);
+
+        // Announcements
+        Route::get('/announcements', [\App\Http\Controllers\AnnouncementController::class, 'index']);
 
         // Student Dashboard
         Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index']);
@@ -53,6 +60,11 @@ Route::prefix('auth')->group(function () {
 
         // Admin Dashboard
         Route::get('/admin/dashboard', [\App\Http\Controllers\AdminDashboardController::class, 'index']);
+        
+        // Admin Announcements
+        Route::post('/admin/announcements', [\App\Http\Controllers\AnnouncementController::class, 'store']);
+        Route::put('/admin/announcements/{id}', [\App\Http\Controllers\AnnouncementController::class, 'update']);
+        Route::delete('/admin/announcements/{id}', [\App\Http\Controllers\AnnouncementController::class, 'destroy']);
         
         // Admin Users Management
         Route::get('/admin/users', [\App\Http\Controllers\AdminUserController::class, 'index']);
@@ -71,7 +83,7 @@ Route::prefix('auth')->group(function () {
         
         // N8N Proxy Route
         Route::post('/n8n/webhook', function (\Illuminate\Http\Request $request) {
-            $n8nUrl = 'https://lixcap-dashboard.app.n8n.cloud/webhook-test/http://local';
+            $n8nUrl = 'https://lixcap-dashboard.app.n8n.cloud/webhook-test/830a44b1-38d1-45b4-8c7e-ce0711a23049';
             
             $response = \Illuminate\Support\Facades\Http::post($n8nUrl, $request->all());
             
@@ -79,7 +91,8 @@ Route::prefix('auth')->group(function () {
                 return response()->json(['success' => true]);
             }
             
-            return response()->json(['success' => false, 'error' => $response->body()], $response->status());
+            \Illuminate\Support\Facades\Log::error('N8N Error: ' . $response->status() . ' - ' . $response->body());
+            return response()->json(['success' => false, 'error' => $response->body(), 'status' => $response->status()], $response->status());
         });
     });
 });

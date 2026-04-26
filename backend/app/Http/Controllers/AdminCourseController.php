@@ -24,7 +24,8 @@ class AdminCourseController extends Controller
             'duration' => 'required|string',
             'description' => 'required|string',
             'tags' => 'required|array',
-            'modules' => 'nullable|array'
+            'modules' => 'nullable|array',
+            'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         $courseData = [
@@ -55,6 +56,11 @@ class AdminCourseController extends Controller
 
         $courseData['lessons_count'] = $lessonsCount;
         $courseData['exercises_count'] = $exercisesCount;
+
+        if ($request->hasFile('thumbnail')) {
+            $path = $request->file('thumbnail')->store('course_thumbnails', 'public');
+            $courseData['thumbnail'] = $path;
+        }
 
         // Optionally add defaults for missing UI fields
         $courseData['icon'] = 'fas fa-graduation-cap';

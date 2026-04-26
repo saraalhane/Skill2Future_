@@ -160,5 +160,24 @@
 
 .logout-btn:hover {
     color: #dc3545;
-    /* Red color on hover for logout */
 }
+
+/* Admin Panel link — distinct amber accent */
+.menu-item.admin-link {
+    color: #fbbf24;
+}
+.menu-item.admin-link i {
+    color: #fbbf24;
+}
+.menu-item.admin-link:hover {
+    background-color: rgba(251,191,36,0.1);
+    color: #fde68a;
+}
+.menu-item.admin-link.active {
+    background-color: rgba(251,191,36,0.15);
+    border-left-color: #fbbf24;
+    color: #fde68a;
+}
+.menu-item.admin-link.active i {
+    color: #fbbf24;
+}

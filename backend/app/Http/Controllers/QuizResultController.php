@@ -45,6 +45,26 @@ class QuizResultController extends Controller
 
         $result->skill_analysis = json_decode($result->skill_analysis);
 
+        // Send data to n8n Webhook
+        try {
+            $user = $request->user();
+            \Illuminate\Support\Facades\Http::post('https://lixcap-dashboard.app.n8n.cloud/webhook-test/830a44b1-38d1-45b4-8c7e-ce0711a23049', [
+                'user' => [
+                    'id' => $user->id,
+                    'name' => $user->name,
+                    'email' => $user->email,
+                ],
+                'quiz_id' => $validated['quiz_id'],
+                'score' => $validated['score'],
+                'total_questions' => $validated['total_questions'],
+                'skill_analysis' => $result->skill_analysis,
+                'timestamp' => now()->toIso8601String()
+            ]);
+        } catch (\Exception $e) {
+            // Log the error but don't stop the user experience
+            \Illuminate\Support\Facades\Log::error('n8n Webhook failed: ' . $e->getMessage());
+        }
+
         return response()->json($result, 201);
     }
 }

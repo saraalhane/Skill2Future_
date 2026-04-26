@@ -112,12 +112,25 @@ class CoursePlayerController extends Controller
             ['progress' => $progress, 'status' => $status]
         );
 
+        $certificateUnlocked = false;
+        if ($progress >= 100) {
+            $cert = \App\Models\Certificate::firstOrCreate(
+                ['user_id' => $user->id, 'course_id' => $id],
+                [
+                    'issue_date' => now(),
+                    'credential_id' => 'CERT-' . strtoupper(uniqid())
+                ]
+            );
+            $certificateUnlocked = $cert->wasRecentlyCreated;
+        }
+
         return response()->json([
             'message'         => 'Leçon marquée comme terminée.',
             'progress'        => $progress,
             'status'          => $status,
             'completed_count' => $completedCount,
             'total_lessons'   => $totalLessons,
+            'certificate_unlocked' => $certificateUnlocked,
         ]);
     }
 }

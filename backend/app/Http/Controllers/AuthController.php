@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 use App\Models\User;
 
 class AuthController extends Controller
@@ -58,10 +59,9 @@ class AuthController extends Controller
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        if ($request->boolean('remember')) {
-            // Session cookie for remember me
-            $request->session()->regenerate(true);
-        }
+        // If remember is true, the frontend will store the token in localStorage
+        // If false, it could store it in sessionStorage. We don't need to manage 
+        // Laravel sessions since we are using Sanctum API tokens.
 
         return response()->json([
             'success' => true,

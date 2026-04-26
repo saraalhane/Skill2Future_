@@ -25,6 +25,11 @@ class CourseSeeder extends Seeder
         $courses = [
             [
                 'title'           => 'Développement Web Complet',
+                'category'        => 'Développement Web',
+                'level'           => 'Débutant',
+                'duration'        => '25h 30m',
+                'description'     => 'Apprenez le développement web de A à Z avec HTML, CSS, JS et React.',
+                'tags'            => 'HTML, CSS, JavaScript, React',
                 'lessons_count'   => 12,
                 'exercises_count' => 3,
                 'icon'            => 'fas fa-code',
@@ -70,6 +75,11 @@ class CourseSeeder extends Seeder
             ],
             [
                 'title'           => 'Python pour la Data Science',
+                'category'        => 'Data Science',
+                'level'           => 'Intermédiaire',
+                'duration'        => '18h 45m',
+                'description'     => 'Maîtrisez Python, Pandas et la visualisation de données pour devenir un expert.',
+                'tags'            => 'Python, Pandas, Data',
                 'lessons_count'   => 9,
                 'exercises_count' => 2,
                 'icon'            => 'fas fa-chart-line',
@@ -106,6 +116,11 @@ class CourseSeeder extends Seeder
             ],
             [
                 'title'           => 'Cybersécurité Fondamentaux',
+                'category'        => 'Cybersécurité',
+                'level'           => 'Débutant',
+                'duration'        => '15h 20m',
+                'description'     => 'Comprenez les bases de la sécurité informatique, les vulnérabilités et la protection des réseaux.',
+                'tags'            => 'Sécurité, Réseau, Hacking',
                 'lessons_count'   => 8,
                 'exercises_count' => 2,
                 'icon'            => 'fas fa-shield-alt',

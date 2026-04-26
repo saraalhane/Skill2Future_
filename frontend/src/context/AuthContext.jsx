@@ -13,10 +13,19 @@ export function AuthProvider({ children }) {
 // Load & validate user from localStorage
   useEffect(() => {
     const validateToken = async () => {
-      const token = localStorage.getItem("token");
-      const storedUser = localStorage.getItem("user");
+      // Check if there's a token in the URL (from Google Auth redirect)
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlToken = urlParams.get('token');
       
-      if (token && storedUser) {
+      if (urlToken) {
+        localStorage.setItem("token", urlToken);
+        // Clear token from URL so it's not visible
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+
+      const token = localStorage.getItem("token");
+      
+      if (token) {
         try {
           const res = await fetch(`${API}/user`, {
             headers: {
@@ -28,6 +37,7 @@ export function AuthProvider({ children }) {
           if (res.ok) {
             const userData = await res.json();
             setUser(userData);
+            localStorage.setItem("user", JSON.stringify(userData));
           } else {
             // Invalid token, clear storage
             localStorage.removeItem("token");

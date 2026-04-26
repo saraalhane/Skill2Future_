@@ -9,6 +9,8 @@ class Course extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    
+    protected $appends = ['thumbnail_url'];
 
     protected $casts = [
         'tags' => 'array',
@@ -27,5 +29,10 @@ class Course extends Model
     public function lessons()
     {
         return $this->hasMany(Lesson::class);
+    }
+
+    public function getThumbnailUrlAttribute()
+    {
+        return $this->thumbnail ? asset('storage/' . $this->thumbnail) : null;
     }
 }
