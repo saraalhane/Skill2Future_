@@ -48,13 +48,13 @@ jobs:
         run: npm run build
 
       # 7. Exécution des Tests
-      - name: Run Tests
-        working-directory: ./backend
-        env:
-          DB_CONNECTION: sqlite
-          DB_DATABASE: database/database.sqlite
-        run: |
-          php artisan key:generate
-          mkdir -p database
-          touch database/database.sqlite
-          php artisan test
+      - name: Execute tests with coverage
+      working-directory: ./backend
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: |
+        # On crée le dossier où sera stocké le rapport
+        mkdir -p build/logs
+        # On lance les tests en générant le fichier de couverture
+        php artisan test --coverage-clover build/logs/clover.xml
