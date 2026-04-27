@@ -38,7 +38,6 @@ jobs:
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
       # 6. Frontend : Installation et Build
-      # C'est ici qu'on résout ton erreur "Vite manifest not found"
       - name: Install Frontend Dependencies
         working-directory: ./frontend
         run: npm install
@@ -49,12 +48,10 @@ jobs:
 
       # 7. Exécution des Tests
       - name: Execute tests with coverage
-      working-directory: ./backend
-      env:
-        DB_CONNECTION: sqlite
-        DB_DATABASE: database/database.sqlite
-      run: |
-        # On crée le dossier où sera stocké le rapport
-        mkdir -p build/logs
-        # On lance les tests en générant le fichier de couverture
-        php artisan test --coverage-clover build/logs/clover.xml
+        working-directory: ./backend
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: database/database.sqlite
+        run: |
+          mkdir -p build/logs
+          php artisan test --coverage-clover build/logs/clover.xml
