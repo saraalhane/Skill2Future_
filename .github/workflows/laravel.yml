@@ -54,4 +54,7 @@ jobs:
           DB_DATABASE: database/database.sqlite
         run: |
           mkdir -p build/logs
+          # Ajoute cette ligne cruciale ici :
+          php artisan config:clear
+          # Puis lance les tests
           php artisan test --coverage-clover build/logs/clover.xml
